@@ -35,6 +35,12 @@ ChinaSMS.use :tui3, username: 'YOUR_USERNAME', password: 'YOUR_PASSWORD'
 ChinaSMS.to '13912345678', '[Test]China SMS gem has been released.'
 ```
 
+```ruby
+# 暂时支持 :smsbao
+ChinaSMS.use :smsbao, username: 'YOUR_USERNAME', password: 'YOUR_PASSWORD'
+ChinaSMS.get # { success: true, code: '0', message: '短信发送成功', send: 100, remain: 200 }
+```
+
 ## 贡献
 
 ```bash
