@@ -15,7 +15,8 @@ module ChinaSMS
         }
         opts[:vars] = options[:vars].is_a?(Hash) ? JSON.generate(options[:vars]) : options[:vars]
 
-        res = Net::HTTP.post_form(URI.parse(SEND_URL), opts)
+        base_uri = const_get("URL") ? const_get("URL") : SEND_URL
+        res = Net::HTTP.post_form(URI.parse(base_uri), opts)
         result res.body
       end
 

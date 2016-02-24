@@ -5,7 +5,7 @@ describe "Submail" do
   describe "#to" do
     let(:appid) { '12345' }
     let(:appkey) { '2022b1599967a8cb788c05ddd9fc339e' }
-    let(:send_url) { "https://api.submail.cn/message/xsend.json" }
+    let(:send_url) { "http://api.example.cn/message/xsend.json" }
     let(:project) { 'SDsw1' }
 
     describe 'single phone' do
@@ -19,7 +19,7 @@ describe "Submail" do
               "project" => project,
               "to" => phone,
               "signature" => appkey,
-              "vars" => nil
+              "vars" => { var: '123' }.to_json
             }).
           to_return(
             body: {
@@ -29,10 +29,11 @@ describe "Submail" do
               "sms_credits" => "46"
             }.to_json
           )
+        ChinaSMS.use :submail, base_uri: send_url, username: appid, password: appkey
       end
 
       context 'string content' do
-        subject { ChinaSMS::Service::Submail.to phone, project, username: appid, password: appkey }
+        subject { ChinaSMS.to phone, project, vars: { var: '123' } }
 
         its(["status"]) { should eql 'success' }
         its(["fee"]) { should eql "2" }
