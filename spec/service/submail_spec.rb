@@ -16,15 +16,16 @@ describe "Submail" do
           with(
             body: {
               "appid" => appid,
-              "project" => phone,
+              "project" => project,
+              "to" => phone,
               "signature" => appkey,
-              "tpl_value" => "#code#=123&#company#=云片网" },
-            ).
+              "vars" => nil
+            }).
           to_return(
             body: {
               'status' => 'success',
               'send_id' => '093c0a7df143c087d6cba9cdf0cf3738',
-              "fee" => 2,
+              "fee" => "2",
               "sms_credits" => "46"
             }.to_json
           )
@@ -33,8 +34,8 @@ describe "Submail" do
       context 'string content' do
         subject { ChinaSMS::Service::Submail.to phone, project, username: appid, password: appkey }
 
-        its(["status"]) { should eql 0 }
-        its(["fee"]) { should eql "OK" }
+        its(["status"]) { should eql 'success' }
+        its(["fee"]) { should eql "2" }
       end
 
     end
