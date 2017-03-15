@@ -63,7 +63,7 @@ ChinaSMS.to '13912345678', tpl_params, tpl_id: 1
 
 ChinaSMS.use :submail, username: <your-app-id>, password: <your-app-key>
 vars = { code: 123, company: '19wu' }
-ChinaSMS.to '13912345678', vars, projecy: <project-template-id>
+ChinaSMS.to '13912345678', vars, project: <project-template-id>
 ```
 
 ## 贡献
