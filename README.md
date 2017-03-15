@@ -12,6 +12,7 @@
 * [畅友网络](http://www.chanyoo.cn/) 群发短信需要半小时左右的时间审核，星期五等繁忙时段会有几个小时的延时，不适合发送注册校验码等实时短信，单次最多发送500个号码
 * [亿美软通](http://www.emay.cn/)
 * [螺丝帽](http://luosimao.com/)
+* [Submail](http://submail.cn/sms)
 
 感谢 [云片网](http://yunpian.com/?ref=china_sms) 为 [19屋活动平台](http://19wu.com) 提供短信赞助。
 
@@ -56,6 +57,13 @@ ChinaSMS.to '13912345678', 'China SMS gem has been released.【Test】'    # luo
 tpl_params = { code: 123, company: '19wu' }
 ChinaSMS.to '13912345678', tpl_params, tpl_id: 1
 
+
+# :Submail
+# 发送之前需要先完成项目模版的审核
+
+ChinaSMS.use :submail, username: <your-app-id>, password: <your-app-key>
+vars = { code: 123, company: '19wu' }
+ChinaSMS.to '13912345678', <project-template-id>, vars
 ```
 
 ## 贡献
