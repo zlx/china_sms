@@ -69,7 +69,6 @@ ChinaSMS.to '13912345678', vars, project: <project-template-id>
 # :Aliyun
 # 发送之前需要先在 Aliyun 完成模版和签名的审核
 
-ChinaSMS.use :submail, username: <your-app-id>, password: <your-app-key>
 ChinaSMS.use :aliyun, username: <your-app-id>, password: <your-app-key>
 vars = { code: 123, company: '19wu' }
 ChinaSMS.to '13912345678', vars, template_code: <project-template-id>, sign_name: <sign-name>
